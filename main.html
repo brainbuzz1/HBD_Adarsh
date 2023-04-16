@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivedi-G</title>
+    <style>
+        .dog{
+            max-height: 50vh;
+            width: 40vw;
+            position: absolute;
+            bottom: 5vh;
+            left: 30vw;
+        }
+        .comm{
+            font-size: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <center class="comm"><h1>Touch The Dog</h1>|</center>
+    <img class="dog" src="happy.png" alt="">
+    <script>
+        var count = 1;
+        var angry = new Audio('angry.mp3');
+        var sad = new Audio('sad.mp3');
+        function sleep(ms){
+            try{
+                p = new Promise(resolve => setTimeout(resolve, ms),false);
+            }
+            catch(e){
+            }
+            return p;
+        }
+        function back(){
+            angry.pause();
+            angry.load();
+            document.getElementsByClassName('dog')[0].src = "happy.png";
+            if (count == 2){
+                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Again!!!<h1>";
+            }
+            else if (count == 3){
+                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Just one more time!!!<h1>";
+            }
+        }
+        document.getElementsByClassName('dog')[0].addEventListener('click', () => {
+            if(count<3){
+                document.getElementsByClassName('dog')[0].src = "angry.png";
+                angry.play();
+                count=count+1
+                setTimeout(back, 5000);
+            }
+            else{
+                sad.play();
+                document.getElementsByClassName('dog')[0].src = "sad.png";
+                write();
+            }
+        })
+        async function write(){
+            let element1=document.getElementsByClassName('comm')[0]
+            let s1="Once a dog said,<br>Harr Kutte ka Din aata h!!<br>Aur aaj Humare Kutte ka din h<br>😂😂😂"
+            let s="";
+            element1.innerHTML="";
+            for(let i=0;i<s1.length;i++){
+                s+=s1[i];
+                element1.innerHTML=s;
+                await sleep(200);
+            }
+        }
+    </script>
+</body>
+</html>
