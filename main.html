@@ -32,7 +32,7 @@
 <body>
     <center class="comm"><h1>Touch The Dog</h1></center><br><br>
     <img class="dog" src="happy.png" alt="">
-    <center><img class="wish" src="wish.jpg" alt=""></center>
+    <center><a href="msg.html"><img class="wish" src="wish.jpg" alt=""></a></center>
     <script>
         var count = 1;
         var angry = new Audio('angry.mp3');
@@ -86,7 +86,7 @@
             // document.getElementsByClassName('wish')[0].style.display = "inline";
             document.getElementsByClassName('wish')[0].style.height = "50vh"
             setTimeout( () => {
-                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Click on The Card</h1>"
+                document.getElementsByClassName('comm')[0].innerHTML = "Click on The Card"
             },5000)
         }
     </script>
