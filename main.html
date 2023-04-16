@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivedi-G</title>
     <style>
+        body{
+            background-image: url("background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
         .dog{
             max-height: 50vh;
             width: 40vw;
@@ -14,13 +19,19 @@
             left: 30vw;
         }
         .comm{
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 5vh;
+        }
+        .wish{
+            height: 0vw;
+            transition: all 1s;
         }
     </style>
 </head>
 <body>
-    <center class="comm"><h1>Touch The Dog</h1>|</center>
+    <center class="comm"><h1>Touch The Dog</h1></center><br><br>
     <img class="dog" src="happy.png" alt="">
+    <center><img class="wish" src="wish.jpg" alt=""></center>
     <script>
         var count = 1;
         var angry = new Audio('angry.mp3');
@@ -38,10 +49,10 @@
             angry.load();
             document.getElementsByClassName('dog')[0].src = "happy.png";
             if (count == 2){
-                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Again!!!<h1>";
+                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Again!!!</h1>";
             }
             else if (count == 3){
-                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Just one more time!!!<h1>";
+                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Just one more time!!!</h1>";
             }
         }
         document.getElementsByClassName('dog')[0].addEventListener('click', () => {
@@ -55,6 +66,7 @@
                 sad.play();
                 document.getElementsByClassName('dog')[0].src = "sad.png";
                 write();
+                setTimeout(wish, 10000)
             }
         })
         async function write(){
@@ -64,9 +76,17 @@
             element1.innerHTML="";
             for(let i=0;i<s1.length;i++){
                 s+=s1[i];
-                element1.innerHTML=s;
-                await sleep(200);
+                element1.innerHTML=s+"|";
+                await sleep(100);
             }
+        }
+        function wish(){
+            document.getElementsByClassName('dog')[0].style.display = "none";
+            // document.getElementsByClassName('wish')[0].style.display = "inline";
+            document.getElementsByClassName('wish')[0].style.height = "50vh"
+            setTimeout( () => {
+                document.getElementsByClassName('comm')[0].innerHTML = "<h1>Click on The Card</h1>"
+            },5000)
         }
     </script>
 </body>
